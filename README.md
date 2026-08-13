@@ -86,6 +86,80 @@ docker-compose up -d --build
 | Jaeger over Tempo | Jaeger has standalone mode ideal for PoC; Tempo requires object storage |
 | 3 services (not 1) | Demonstrates distributed tracing context propagation across service boundaries |
 
+
+## ðŸ“‹ Prerequisites
+
+| Tool | Version | Purpose |
+|------|---------|---------|
+| [Docker](https://www.docker.com/) | >= 24.x | Container runtime |
+| [Docker Compose](https://docs.docker.com/compose/) | >= 2.x | Multi-container orchestration |
+| [curl](https://curl.se/) or browser | Any | API testing & UI access |
+
+## ðŸš€ Step-by-Step Setup
+
+```bash
+# 1. Clone the repository
+git clone https://github.com/SumitDalavi/opentelemetry-microservice-demo.git
+cd opentelemetry-microservice-demo
+
+# 2. Build and start all services (3 microservices + observability stack)
+docker-compose up -d --build
+
+# 3. Verify all containers are running
+docker-compose ps
+```
+
+### Services & Ports
+
+| Service | URL | Purpose |
+|---------|-----|---------|
+| API Gateway | http://localhost:3000 | Application entry point |
+| Jaeger UI | http://localhost:16686 | Distributed tracing |
+| Prometheus | http://localhost:9090 | Metrics collection |
+| Grafana | http://localhost:3001 | Dashboards (admin/admin) |
+| OTEL Collector | http://localhost:4318 | Telemetry pipeline |
+
+## ðŸ§ª Usage & Demo
+
+### Step 1: Generate traces by calling the API
+```bash
+# Hit the API Gateway multiple times to generate trace data
+curl http://localhost:3000/api/orders
+curl http://localhost:3000/api/orders
+curl http://localhost:3000/api/orders
+```
+
+### Step 2: View distributed traces in Jaeger
+1. Open **http://localhost:16686**
+2. Select **"api-gateway"** from the Service dropdown
+3. Click **"Find Traces"**
+4. Click on a trace to see the full request flow across microservices (api-gateway â†’ order-service â†’ payment-service)
+
+### Step 3: View metrics in Prometheus
+1. Open **http://localhost:9090**
+2. Try queries like:
+   - `http_requests_total` â€” Total HTTP requests per service
+   - `http_request_duration_seconds_bucket` â€” Request latency distribution
+
+### Step 4: Explore Grafana dashboards
+1. Open **http://localhost:3001** (login: **admin** / **admin**)
+2. Add Prometheus as a data source (URL: `http://prometheus:9090`)
+3. Add Jaeger as a data source (URL: `http://jaeger:16686`)
+
+## âœ… Verification
+
+| Check | Command / Action | Expected |
+|-------|-----------------|----------|
+| All services up | `docker-compose ps` | 7 containers running |
+| API responds | `curl http://localhost:3000/api/orders` | Order JSON response |
+| Traces visible | Open Jaeger UI â†’ Find Traces | Multi-span traces |
+| Metrics flowing | Prometheus â†’ `http_requests_total` | Incrementing counters |
+
+```bash
+# Stop all services
+docker-compose down
+```
+
 ## 👨‍💻 Author
 
 *Built to extend Prometheus/Grafana/Datadog expertise with the vendor-neutral CNCF observability standard.*
