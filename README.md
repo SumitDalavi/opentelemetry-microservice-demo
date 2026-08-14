@@ -77,6 +77,10 @@ docker-compose up -d --build
 | Prometheus (Metrics) | http://localhost:9090 |
 | Grafana (Dashboards) | http://localhost:3001 |
 
+> **💡 Trace Sampling:** This demo uses the default `AlwaysOn` sampler for full visibility. In production, switch to `ParentBased(TraceIdRatioBased(0.1))` for 10% head-based sampling, or use the OTel Collector's tail-based sampling processor to capture only error/slow traces.
+
+> **💡 Trace Sampling:** This demo uses the default `AlwaysOn` sampler for full visibility. In production, switch to `ParentBased(TraceIdRatioBased(0.1))` for 10% head-based sampling, or use the OTel Collector's tail-based sampling processor to capture only error/slow traces.
+
 ## Decision Log
 
 | Decision | Rationale |
@@ -87,7 +91,7 @@ docker-compose up -d --build
 | 3 services (not 1) | Demonstrates distributed tracing context propagation across service boundaries |
 
 
-## ðŸ“‹ Prerequisites
+## 📋 Prerequisites
 
 | Tool | Version | Purpose |
 |------|---------|---------|
@@ -95,7 +99,7 @@ docker-compose up -d --build
 | [Docker Compose](https://docs.docker.com/compose/) | >= 2.x | Multi-container orchestration |
 | [curl](https://curl.se/) or browser | Any | API testing & UI access |
 
-## ðŸš€ Step-by-Step Setup
+## 🚀 Step-by-Step Setup
 
 ```bash
 # 1. Clone the repository
@@ -119,7 +123,7 @@ docker-compose ps
 | Grafana | http://localhost:3001 | Dashboards (admin/admin) |
 | OTEL Collector | http://localhost:4318 | Telemetry pipeline |
 
-## ðŸ§ª Usage & Demo
+## 🧪 Usage & Demo
 
 ### Step 1: Generate traces by calling the API
 ```bash
@@ -146,7 +150,7 @@ curl http://localhost:3000/api/orders
 2. Add Prometheus as a data source (URL: `http://prometheus:9090`)
 3. Add Jaeger as a data source (URL: `http://jaeger:16686`)
 
-## âœ… Verification
+## ✅ Verification
 
 | Check | Command / Action | Expected |
 |-------|-----------------|----------|
@@ -162,4 +166,9 @@ docker-compose down
 
 ## 👨‍💻 Author
 
-*Built to extend Prometheus/Grafana/Datadog expertise with the vendor-neutral CNCF observability standard.*
+**Sumit Dalavi** — Senior DevSecOps / Platform Engineer
+[GitHub](https://github.com/SumitDalavi) | [LinkedIn](https://in.linkedin.com/in/sumit-dalavi-762838129)
+
+---
+
+*Built with a focus on production-grade patterns, not toy demos.*
