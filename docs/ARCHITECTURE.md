@@ -1,5 +1,17 @@
 # Architecture: OpenTelemetry Microservice Demo
 
+## System Diagram
+The following Mermaid.js sequence diagram maps the core workflow and interactions:
+
+```mermaid
+sequenceDiagram
+    ServiceA->>OtelCollector: Send Traces
+ServiceB->>OtelCollector: Send Traces
+OtelCollector->>Jaeger: Export
+OtelCollector->>Prometheus: Export
+```
+
+
 ## The Three Pillars of Observability
 OpenTelemetry unifies all three signals under one SDK:
 1. **Traces**: Follow a single request across all 3 services (API Gateway → Order Service → Payment Service)
