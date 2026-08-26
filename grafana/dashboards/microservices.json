@@ -1,0 +1,39 @@
+{
+  "title": "OpenTelemetry Microservice Demo",
+  "uid": "otel-microservices",
+  "tags": ["opentelemetry", "microservices", "tracing"],
+  "panels": [
+    {
+      "id": 1, "title": "Request Rate by Service",
+      "type": "timeseries",
+      "targets": [{"expr": "sum(rate(http_server_duration_count[1m])) by (service_name)", "legendFormat": "{{service_name}}"}],
+      "gridPos": {"h": 8, "w": 12, "x": 0, "y": 0}
+    },
+    {
+      "id": 2, "title": "P99 Latency by Service (ms)",
+      "type": "timeseries",
+      "targets": [{"expr": "histogram_quantile(0.99, sum(rate(http_server_duration_bucket[1m])) by (le, service_name))", "legendFormat": "{{service_name}} p99"}],
+      "gridPos": {"h": 8, "w": 12, "x": 12, "y": 0},
+      "fieldConfig": {"defaults": {"unit": "ms", "thresholds": {"steps": [{"color": "green", "value": 0}, {"color": "yellow", "value": 200}, {"color": "red", "value": 1000}]}}}
+    },
+    {
+      "id": 3, "title": "Error Rate (%)",
+      "type": "stat",
+      "targets": [{"expr": "sum(rate(http_server_duration_count{http_status_code=~'5..'}[5m])) / sum(rate(http_server_duration_count[5m])) * 100", "legendFormat": "Error Rate"}],
+      "gridPos": {"h": 4, "w": 6, "x": 0, "y": 8},
+      "fieldConfig": {"defaults": {"unit": "percent", "thresholds": {"steps": [{"color": "green", "value": 0}, {"color": "red", "value": 1}]}}}
+    },
+    {
+      "id": 4, "title": "Active Traces",
+      "type": "stat",
+      "targets": [{"expr": "sum(otelcol_processor_batch_batch_size_trigger_send_total)", "legendFormat": "Spans/s"}],
+      "gridPos": {"h": 4, "w": 6, "x": 6, "y": 8}
+    },
+    {
+      "id": 5, "title": "Service Dependency Map",
+      "type": "nodeGraph",
+      "targets": [{"expr": "sum(rate(http_client_duration_count[5m])) by (service_name, net_peer_name)", "legendFormat": ""}],
+      "gridPos": {"h": 10, "w": 24, "x": 0, "y": 12}
+    }
+  ]
+}

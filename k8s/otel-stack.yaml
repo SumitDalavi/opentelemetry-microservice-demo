@@ -1,0 +1,86 @@
+# Deploy the full OTel microservice demo to Kubernetes
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: otel-demo
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-gateway
+  namespace: otel-demo
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: api-gateway
+  template:
+    metadata:
+      labels:
+        app: api-gateway
+      annotations:
+        instrumentation.opentelemetry.io/inject-nodejs: "true"
+    spec:
+      containers:
+        - name: api-gateway
+          image: ghcr.io/sumitdalavi/otel-api-gateway:latest
+          ports:
+            - containerPort: 3000
+          env:
+            - name: OTEL_EXPORTER_OTLP_ENDPOINT
+              value: "http://otel-collector:4317"
+            - name: OTEL_SERVICE_NAME
+              value: api-gateway
+          resources:
+            requests: {cpu: 50m, memory: 64Mi}
+            limits: {cpu: 200m, memory: 256Mi}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: otel-collector
+  namespace: otel-demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: otel-collector
+  template:
+    metadata:
+      labels:
+        app: otel-collector
+    spec:
+      containers:
+        - name: otel-collector
+          image: otel/opentelemetry-collector-contrib:latest
+          ports:
+            - containerPort: 4317  # gRPC
+            - containerPort: 4318  # HTTP
+            - containerPort: 8889  # Prometheus metrics
+          volumeMounts:
+            - name: config
+              mountPath: /etc/otelcol-contrib
+      volumes:
+        - name: config
+          configMap:
+            name: otel-collector-config
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: otel-collector
+  namespace: otel-demo
+spec:
+  selector:
+    app: otel-collector
+  ports:
+    - name: grpc
+      port: 4317
+      targetPort: 4317
+    - name: http
+      port: 4318
+      targetPort: 4318
+    - name: metrics
+      port: 8889
+      targetPort: 8889
