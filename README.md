@@ -1,6 +1,9 @@
+> **NOTE:** This repository is an archival lab or partial prototype. It is not actively maintained and should not be used as a reference for production-grade deployments or performance benchmarks.
+
+
 # OpenTelemetry Microservice Demo 📡📊
 
-> **Maturity:** Partial Prototype
+> **Maturity:** Functional Prototype
 > _Unified traces, metrics, and logs across a Node.js microservice fleet — demonstrating vendor-neutral observability with the CNCF standard._
 
 ## The Problem
@@ -188,4 +191,4 @@ docker-compose down
 
 ---
 
-*Built with a focus on production-grade patterns, not toy demos.*
+*Built with a focus on robust patterns, not toy demos.*
