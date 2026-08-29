@@ -1,6 +1,7 @@
 # OpenTelemetry Microservice Demo 📡📊
 
-> Unified traces, metrics, and logs across a Node.js microservice fleet — demonstrating vendor-neutral observability with the CNCF standard.
+> **Maturity:** Partial Prototype
+> _Unified traces, metrics, and logs across a Node.js microservice fleet — demonstrating vendor-neutral observability with the CNCF standard._
 
 ## The Problem
 
@@ -80,6 +81,22 @@ docker-compose up -d --build
 > **💡 Trace Sampling:** This demo uses the default `AlwaysOn` sampler for full visibility. In production, switch to `ParentBased(TraceIdRatioBased(0.1))` for 10% head-based sampling, or use the OTel Collector's tail-based sampling processor to capture only error/slow traces.
 
 > **💡 Trace Sampling:** This demo uses the default `AlwaysOn` sampler for full visibility. In production, switch to `ParentBased(TraceIdRatioBased(0.1))` for 10% head-based sampling, or use the OTel Collector's tail-based sampling processor to capture only error/slow traces.
+
+## Mock Boundaries (Honest Scope)
+
+| What | Status | Details |
+|---|---|---|
+| OTel Pipeline | **Real** | Full Jaeger, Prometheus, Loki, Grafana stack running via Docker Compose. |
+| Microservices | **Real** | Node.js services auto-instrumented with OTel emitting real telemetry. |
+| Traffic | **Mocked** | Simulated curl traffic replaces real user load. |
+
+## 📚 Documentation
+
+- [Architecture](docs/ARCHITECTURE.md) — System diagram and component details
+- [Runbook](docs/runbook.md) — Setup, commands, and expected outputs
+- [Decisions](docs/decisions.md) — ADRs for observability stack choices
+- [Changelog](docs/changelog.md) — Change history
+- [Failure Walkthrough](docs/failure_walkthrough.md) — Guide to debugging a simulated failure using OTel traces.
 
 ## Decision Log
 
