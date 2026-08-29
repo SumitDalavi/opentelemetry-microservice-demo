@@ -12,3 +12,10 @@
 - Added `docs/failure_walkthrough.md` simulating a failure investigation using OTel traces.
 - Standardized documentation (`runbook.md`, `decisions.md`, `ARCHITECTURE.md`).
 - Added maturity badge and mock boundaries to `README.md`.
+
+## [v5.0.0] - 2026-08-30
+### Added
+- Upgraded to Portfolio V5 standards (World-Class).
+- Added verifiable, reproducible E2E integration tests captured in run-history.
+- Refined README.md presentation and architectural documentation.
+

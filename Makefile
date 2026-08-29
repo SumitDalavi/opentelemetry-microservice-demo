@@ -17,7 +17,7 @@ traffic:
 ## demo: Start services, generate traffic, and open Jaeger UI
 demo: up
 	@echo "⏳ Waiting 10s for services to stabilize..."
-	sleep 10
+	@powershell -Command "Start-Sleep -Seconds 10"
 	$(MAKE) traffic
 	@echo "✅ Demo complete. Open Jaeger at http://localhost:16686 to view traces."
 	@echo "   See docs/trace-to-incident-walkthrough.md for guided analysis."

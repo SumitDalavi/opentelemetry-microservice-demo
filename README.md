@@ -1,6 +1,3 @@
-> **NOTE:** This repository is an archival lab or partial prototype. It is not actively maintained and should not be used as a reference for production-grade deployments or performance benchmarks.
-
-
 # OpenTelemetry Microservice Demo 📡📊
 
 [![CI](https://github.com/SumitDalavi/opentelemetry-microservice-demo/actions/workflows/ci.yml/badge.svg)](https://github.com/SumitDalavi/opentelemetry-microservice-demo/actions/workflows/ci.yml)
