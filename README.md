@@ -3,6 +3,8 @@
 
 # OpenTelemetry Microservice Demo 📡📊
 
+[![CI](https://github.com/SumitDalavi/opentelemetry-microservice-demo/actions/workflows/ci.yml/badge.svg)](https://github.com/SumitDalavi/opentelemetry-microservice-demo/actions/workflows/ci.yml)
+
 > **Maturity:** Functional Prototype
 > _Unified traces, metrics, and logs across a Node.js microservice fleet — demonstrating vendor-neutral observability with the CNCF standard._
 
