@@ -1,15 +1,47 @@
-# Architecture: OpenTelemetry Microservice Demo
+# Architecture — opentelemetry-microservice-demo
+> Last updated: 2026-08-29 | Maturity: Partial Prototype
+> _OpenTelemetry tracing across Node.js microservices._
 
 ## System Diagram
 The following Mermaid.js sequence diagram maps the core workflow and interactions:
 
 ```mermaid
-sequenceDiagram
-    ServiceA->>OtelCollector: Send Traces
-ServiceB->>OtelCollector: Send Traces
-OtelCollector->>Jaeger: Export
-OtelCollector->>Prometheus: Export
+flowchart TD
+    Client(["Client"])
+    API["API Gateway"]
+    Order["Order Service"]
+    Payment["Payment Service"]
+    Collector["OTel Collector"]
+    Jaeger["Jaeger (Traces)"]
+    Prom["Prometheus (Metrics)"]
+    Grafana["Grafana"]
+
+    Client -->|"HTTP Request"| API
+    API -->|"Calls"| Order
+    Order -->|"Calls"| Payment
+    API -.->|"OTLP Spans"| Collector
+    Order -.->|"OTLP Spans"| Collector
+    Payment -.->|"OTLP Spans"| Collector
+    Collector --> Jaeger
+    Collector --> Prom
+    Jaeger --- Grafana
+    Prom --- Grafana
 ```
+
+## Component Table
+
+| Component | File | Responsibility | Tech |
+|---|---|---|---|
+| API Gateway | `services/api-gateway/` | Entrypoint | Node.js / Express |
+| Microservices | `services/` | Business logic | Node.js |
+| Collector | `otel-collector/config.yaml`| Telemetry pipeline | OTel Collector |
+
+## Dependency Honesty Table
+
+| Dependency | Status | Notes |
+|---|---|---|
+| OpenTelemetry | **Real** | Real SDK instrumentation and collector export. |
+| Datastores | **Simulated** | Jaeger and Prometheus store data purely locally in memory/disk. |
 
 
 ## The Three Pillars of Observability
