@@ -1,6 +1,10 @@
 # OpenTelemetry Microservice Demo 📡📊
 
 [![Release](https://img.shields.io/github/v/release/SumitDalavi/opentelemetry-microservice-demo?color=blue&logo=github)](https://github.com/SumitDalavi/opentelemetry-microservice-demo/releases)
+[![Release Workflow](https://github.com/SumitDalavi/opentelemetry-microservice-demo/actions/workflows/release.yml/badge.svg)](https://github.com/SumitDalavi/opentelemetry-microservice-demo/actions/workflows/release.yml)
+[![SBOM](https://img.shields.io/badge/SBOM-SPDX%20JSON-blueviolet?logo=spdx)](https://github.com/SumitDalavi/opentelemetry-microservice-demo/releases)
+
+[![Release](https://img.shields.io/github/v/release/SumitDalavi/opentelemetry-microservice-demo?color=blue&logo=github)](https://github.com/SumitDalavi/opentelemetry-microservice-demo/releases)
 [![SBOM](https://img.shields.io/badge/SBOM-SPDX%20JSON-blueviolet?logo=spdx)](https://github.com/SumitDalavi/opentelemetry-microservice-demo/releases)
 
 [![CI](https://github.com/SumitDalavi/opentelemetry-microservice-demo/actions/workflows/ci.yml/badge.svg)](https://github.com/SumitDalavi/opentelemetry-microservice-demo/actions/workflows/ci.yml)
@@ -232,7 +236,7 @@ curl -s "http://localhost:16686/api/traces?service=order-service&limit=1"
 ]
 ```
 
-## Release & Verification
+## Release & Security Verification
 
 The project includes an automated DevSecOps release pipeline (`.github/workflows/release.yml`) triggered on semantic version tags (`v*.*.*`).
 
@@ -252,3 +256,10 @@ gh release view v0.1.0 --repo SumitDalavi/opentelemetry-microservice-demo
 gh release download v0.1.0 --repo SumitDalavi/opentelemetry-microservice-demo --pattern "sbom.spdx.json"
 cat sbom.spdx.json | jq .
 ```
+
+## Documentation
+
+- [Architecture](docs/ARCHITECTURE.md)
+- [Runbook](docs/runbook.md)
+- [Decisions](docs/decisions.md)
+- [Changelog](docs/changelog.md)
