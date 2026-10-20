@@ -1,6 +1,6 @@
 {
   "name": "api-gateway",
-  "version": "1.0.0",
+  "version": "0.2.0",
   "main": "index.js",
   "dependencies": {
     "@opentelemetry/auto-instrumentations-node": "^0.40.0",
