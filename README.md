@@ -205,22 +205,13 @@ curl http://localhost:3000/api/orders
 |-------|-----------------|----------|
 | All services up | `docker-compose ps` | 7 containers running |
 | API responds | `curl http://localhost:3000/api/orders` | Order JSON response |
-| Traces visible | Open Jaeger UI â†’ Find Traces | Multi-span traces |
-| Metrics flowing | Prometheus â†’ `http_requests_total` | Incrementing counters |
+| Traces visible | Open Jaeger UI → Find Traces | Multi-span traces |
+| Metrics flowing | Prometheus → `http_requests_total` | Incrementing counters |
 
 ```bash
 # Stop all services
 docker-compose down
 ```
-
-## 👨‍💻 Author
-
-**Sumit Dalavi** — Senior DevSecOps / Platform Engineer
-[GitHub](https://github.com/SumitDalavi) | [LinkedIn](https://in.linkedin.com/in/sumit-dalavi-762838129)
-
----
-
-*Built with a focus on robust patterns, not toy demos.*
 
 ## End-to-End Traces (Evidence)
 
@@ -259,7 +250,7 @@ curl -s "http://localhost:16686/api/traces?service=order-service&limit=1"
 ]
 ```
 
-## Release & Security Verification
+## 🔒 Release & Security Verification
 
 The project includes an automated DevSecOps release pipeline (`.github/workflows/release.yml`) triggered on semantic version tags (`v*.*.*`).
 
@@ -273,16 +264,24 @@ Each release automatically:
 ### Verifying the Release
 ```bash
 # Verify release via GitHub CLI
-gh release view v0.1.0 --repo SumitDalavi/opentelemetry-microservice-demo
+gh release view v0.2.0 --repo SumitDalavi/opentelemetry-microservice-demo
 
 # Download and inspect SBOM
-gh release download v0.1.0 --repo SumitDalavi/opentelemetry-microservice-demo --pattern "sbom.spdx.json"
+gh release download v0.2.0 --repo SumitDalavi/opentelemetry-microservice-demo --pattern "sbom.spdx.json"
 cat sbom.spdx.json | jq .
 ```
 
-## Documentation
+## 📚 Documentation
 
 - [Architecture](docs/ARCHITECTURE.md)
 - [Runbook](docs/runbook.md)
 - [Decisions](docs/decisions.md)
 - [Changelog](docs/changelog.md)
+
+## 👨‍💻 Author
+
+**Sumit Dalavi** — Senior DevSecOps / Platform Engineer
+[GitHub](https://github.com/SumitDalavi) | [LinkedIn](https://in.linkedin.com/in/sumit-dalavi-762838129)
+
+---
+*Built with a focus on robust patterns, not toy demos.*
