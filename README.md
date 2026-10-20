@@ -1,13 +1,12 @@
 # OpenTelemetry Microservice Demo 📡📊
 
-[![Release](https://img.shields.io/github/v/release/SumitDalavi/opentelemetry-microservice-demo?color=blue&logo=github)](https://github.com/SumitDalavi/opentelemetry-microservice-demo/releases)
+[![CI Pipeline](https://github.com/SumitDalavi/opentelemetry-microservice-demo/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/SumitDalavi/opentelemetry-microservice-demo/actions/workflows/ci.yml)
+[![Release](https://img.shields.io/github/v/release/SumitDalavi/opentelemetry-microservice-demo?color=0969da&label=release&logo=github)](https://github.com/SumitDalavi/opentelemetry-microservice-demo/releases)
 [![Release Workflow](https://github.com/SumitDalavi/opentelemetry-microservice-demo/actions/workflows/release.yml/badge.svg)](https://github.com/SumitDalavi/opentelemetry-microservice-demo/actions/workflows/release.yml)
-[![SBOM](https://img.shields.io/badge/SBOM-SPDX%20JSON-blueviolet?logo=spdx)](https://github.com/SumitDalavi/opentelemetry-microservice-demo/releases)
-
-[![Release](https://img.shields.io/github/v/release/SumitDalavi/opentelemetry-microservice-demo?color=blue&logo=github)](https://github.com/SumitDalavi/opentelemetry-microservice-demo/releases)
-[![SBOM](https://img.shields.io/badge/SBOM-SPDX%20JSON-blueviolet?logo=spdx)](https://github.com/SumitDalavi/opentelemetry-microservice-demo/releases)
-
-[![CI](https://github.com/SumitDalavi/opentelemetry-microservice-demo/actions/workflows/ci.yml/badge.svg)](https://github.com/SumitDalavi/opentelemetry-microservice-demo/actions/workflows/ci.yml)
+[![GHCR Container](https://img.shields.io/badge/ghcr.io-v0.2.0-blue?logo=docker&logoColor=white)](https://github.com/SumitDalavi/opentelemetry-microservice-demo/pkgs/container/opentelemetry-microservice-demo)
+[![Python](https://img.shields.io/badge/Python-3.11+-3776AB?logo=python&logoColor=white)](https://www.python.org)
+[![SBOM](https://img.shields.io/badge/SBOM-SPDX%202.3-blueviolet?logo=spdx)](https://github.com/SumitDalavi/opentelemetry-microservice-demo/releases/tag/v0.2.0)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 
 > **Maturity:** Functional Prototype
 > _Unified traces, metrics, and logs across a Node.js microservice fleet — demonstrating vendor-neutral observability with the CNCF standard._
@@ -140,7 +139,6 @@ Enterprise deployment with production-grade backends, security scans, and contai
 | OTel Collector over direct export | Collector acts as a gateway, enabling fan-out to multiple backends without code changes |
 | Jaeger over Tempo | Jaeger has standalone mode ideal for PoC; Tempo requires object storage |
 | 3 services (not 1) | Demonstrates distributed tracing context propagation across service boundaries |
-
 
 ## 📋 Prerequisites
 
